@@ -111,8 +111,11 @@ class AstVisitor(ast.NodeVisitor):
         return node_str
 
 
-if __name__ == "__main__":
+def generate_ast(path_to_save_file):
     ast_object = ast.parse(inspect.getsource(fib_list))
     visitor = AstVisitor()
     visitor.visit(ast_object)
-    networkx.drawing.nx_pydot.to_pydot(visitor.graph).write_png("artifacts/res.png")
+    networkx.drawing.nx_pydot.to_pydot(visitor.graph).write_png(path_to_save_file)
+
+if __name__ == "__main__":
+    generate_ast("artifacts/res.png")
